@@ -3,136 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saba Mehndi Artist</title>
+    <title>Saba Mehndi Artist | Professional Mehndi Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0f0f0f; color: #f3f4f6; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .gold-gradient { background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
+<body class="bg-[#0f0f0f] text-gray-100">
 
-    <header class="p-6 bg-black flex justify-between items-center border-b border-yellow-600">
-        <!-- यहाँ 'SABA MEHNDI' पर 5 बार लगातार क्लिक करें -->
-        <h1 class="text-2xl font-bold text-yellow-500 cursor-pointer" onclick="openAdmin()">SABA MEHNDI</h1>
+    <!-- Header / Navbar -->
+    <header class="bg-black/90 backdrop-blur-md border-b border-yellow-600/30 sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <!-- 'SABA MEHNDI' पर लगातार 5 बार क्लिक करने से एडमिन डैशबोर्ड खुलेगा -->
+        <h1 onclick="openAdminDashboard()" class="text-2xl font-playfair font-bold gold-gradient cursor-pointer tracking-wider">SABA MEHNDI</h1>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+            <a href="#home" class="hover:text-yellow-500 transition">Home</a>
+            <a href="#services" class="hover:text-yellow-500 transition">Services & Pricing</a>
+            <a href="#gallery" class="hover:text-yellow-500 transition">Gallery</a>
+            <a href="#book" class="hover:text-yellow-500 transition">Book Appointment</a>
+            <a href="#contact" class="hover:text-yellow-500 transition">Contact</a>
+        </nav>
     </header>
 
-    <section class="p-8 text-center bg-zinc-800">
-        <h2 class="text-4xl font-serif text-yellow-500 mb-4">Exquisite Mehndi Artistry</h2>
-        <p class="text-gray-300">Tikri Mod, Azad Nagar, Aurangabad, Bihar</p>
+    <!-- Hero Section -->
+    <section id="home" class="relative h-[85vh] flex items-center justify-center text-center px-4 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1400&q=80');">
+        <div class="max-w-2xl">
+            <span class="text-yellow-500 uppercase tracking-widest text-xs font-semibold bg-yellow-500/10 px-3 py-1 rounded-full border border-yellow-500/30">Professional Bridal & Party Artist</span>
+            <h2 class="text-4xl md:text-6xl font-playfair font-bold gold-gradient mt-4 mb-6">Exquisite Mehndi Artistry</h2>
+            <p class="text-gray-300 text-sm md:text-base mb-8">Tikri Mod, Azad Nagar, Aurangabad, Bihar | Custom designs for your special moments.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#book" class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold px-8 py-3 rounded-full shadow-lg hover:opacity-90 transition">Book Appointment</a>
+                <a href="#gallery" class="border border-yellow-500/50 text-yellow-400 px-8 py-3 rounded-full hover:bg-yellow-500/10 transition">View Gallery</a>
+            </div>
+        </div>
     </section>
 
-    <div class="p-8 max-w-6xl mx-auto">
-        <h3 class="text-2xl text-yellow-500 mb-6 border-b border-gray-700 pb-2">Our Design Gallery</h3>
-        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
-    </div>
-
-    <!-- Admin Panel Modal -->
-    <div id="adminModal" class="hidden fixed inset-0 bg-black/90 p-6 overflow-y-auto z-50 flex justify-center items-center">
-        <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full border border-yellow-500">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl text-yellow-500 font-bold">Admin Panel</h3>
-                <button onclick="closeAdmin()" class="bg-red-600 text-white px-3 py-1 rounded">Close X</button>
+    <!-- Services & Pricing Section -->
+    <section id="services" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-14">
+            <h3 class="text-3xl md:text-4xl font-playfair font-bold gold-gradient">Our Exclusive Services</h3>
+            <p class="text-gray-400 text-sm mt-2">Choose the perfect package tailored for your celebration.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-[#1a1a1a] border border-yellow-600/20 rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1610173827050-b447dd498e6c?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-playfair font-bold text-yellow-400">Bridal Special Mehndi</h4>
+                    <p class="text-gray-400 text-sm mt-2">Intricate, heavy full-arm & leg bridal patterns with supreme darkness and finishing.</p>
+                </div>
+                <div class="mt-6 flex items-center justify-between border-t border-gray-800 pt-4">
+                    <span class="text-2xl font-bold text-white">₹5,000</span>
+                    <a href="#book" class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-lg text-sm hover:bg-yellow-400 transition">Book Now</a>
+                </div>
             </div>
+            <div class="bg-[#1a1a1a] border border-yellow-600/20 rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-playfair font-bold text-yellow-400">Arabic & Indo-Arabic</h4>
+                    <p class="text-gray-400 text-sm mt-2">Modern bold trails, floral motifs, and contemporary designs ideal for engagement and parties.</p>
+                </div>
+                <div class="mt-6 flex items-center justify-between border-t border-gray-800 pt-4">
+                    <span class="text-2xl font-bold text-white">₹2,000</span>
+                    <a href="#book" class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-lg text-sm hover:bg-yellow-400 transition">Book Now</a>
+                </div>
+            </div>
+            <div class="bg-[#1a1a1a] border border-yellow-600/20 rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-playfair font-bold text-yellow-400">Party & Guest Mehndi</h4>
+                    <p class="text-gray-400 text-sm mt-2">Sleek minimalist designs or traditional palm patterns for family members and guests.</p>
+                </div>
+                <div class="mt-6 flex items-center justify-between border-t border-gray-800 pt-4">
+                    <span class="text-2xl font-bold text-white">₹800</span>
+                    <a href="#book" class="bg-yellow-500 text-black font-semibold px-4 py-2 rounded-lg text-sm hover:bg-yellow-400 transition">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section (Dynamic & Managed via Admin Panel) -->
+    <section id="gallery" class="py-20 px-6 max-w-7xl mx-auto bg-[#141414] rounded-3xl my-10 border border-yellow-600/10">
+        <div class="text-center mb-14">
+            <h3 class="text-3xl md:text-4xl font-playfair font-bold gold-gradient">Our Design Gallery</h3>
+            <p class="text-gray-400 text-sm mt-2">Explore our latest work. Uploaded directly from our professional collection.</p>
+        </div>
+        <div id="dynamicGalleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- यहाँ आपकी अपलोड की गई फुल फोटो दिखाई देंगी -->
+        </div>
+    </section>
+
+    <!-- Appointment Booking Section -->
+    <section id="book" class="py-20 px-6 max-w-3xl mx-auto">
+        <div class="bg-[#1a1a1a] border border-yellow-600/30 p-8 rounded-3xl shadow-2xl">
+            <h3 class="text-3xl font-playfair font-bold gold-gradient text-center mb-2">Book an Appointment</h3>
+            <p class="text-gray-400 text-center text-sm mb-8">Fill out the details below to schedule your booking.</p>
             
-            <div class="space-y-4">
+            <form onsubmit="submitAppointment(event)" class="space-y-5">
                 <div>
-                    <label class="block text-sm mb-1">Select Photo:</label>
-                    <input type="file" id="imgFile" accept="image/*" class="w-full bg-gray-700 p-2 rounded text-sm">
+                    <label class="block text-sm text-gray-300 mb-1">Your Full Name</label>
+                    <input type="text" id="clientName" required class="w-full bg-[#252525] border border-gray-700 rounded-xl p-3 text-white focus:border-yellow-500 focus:outline-none" placeholder="Enter your name">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-1">Phone Number</label>
+                        <input type="tel" id="clientPhone" required class="w-full bg-[#252525] border border-gray-700 rounded-xl p-3 text-white focus:border-yellow-500 focus:outline-none" placeholder="10-digit mobile number">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-1">Preferred Date</label>
+                        <input type="date" id="clientDate" required class="w-full bg-[#252525] border border-gray-700 rounded-xl p-3 text-white focus:border-yellow-500 focus:outline-none">
+                    </div>
                 </div>
                 <div>
-                    <label class="block text-sm mb-1">Design Name:</label>
-                    <input type="text" id="imgTitle" placeholder="e.g. Bridal Mehndi" class="w-full bg-gray-700 p-2 rounded text-black bg-white">
+                    <label class="block text-sm text-gray-300 mb-1">Select Service / Design</label>
+                    <select id="clientService" class="w-full bg-[#252525] border border-gray-700 rounded-xl p-3 text-white focus:border-yellow-500 focus:outline-none">
+                        <option>Bridal Special Mehndi (₹5,000)</option>
+                        <option>Arabic & Indo-Arabic (₹2,000)</option>
+                        <option>Party & Guest Mehndi (₹800)</option>
+                        <option>Custom Design</option>
+                    </select>
                 </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold py-3.5 rounded-xl shadow-lg hover:opacity-90 transition mt-4">Confirm & Send via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact & Social Links Section -->
+    <section id="contact" class="py-16 bg-black border-t border-gray-800 text-center px-6">
+        <h3 class="text-2xl font-playfair font-bold gold-gradient mb-6">Get in Touch</h3>
+        <div class="flex justify-center space-x-6 text-2xl mb-8">
+            <a href="https://instagram.com" target="_blank" class="text-yellow-500 hover:scale-110 transition bg-yellow-500/10 p-3 rounded-full border border-yellow-500/20"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/919999999999" target="_blank" class="text-yellow-500 hover:scale-110 transition bg-yellow-500/10 p-3 rounded-full border border-yellow-500/20"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:sabamehdi202@gmail.com" class="text-yellow-500 hover:scale-110 transition bg-yellow-500/10 p-3 rounded-full border border-yellow-500/20"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt text-yellow-500 mr-2"></i> Tikri Mod, Azad Nagar, Aurangabad, Bihar</p>
+        <p class="text-gray-500 text-xs mt-4">&copy; 2026 Saba Mehndi Artist. All Rights Reserved.</p>
+    </section>
+
+    <!-- Professional Admin Dashboard Modal -->
+    <div id="adminModal" class="hidden fixed inset-0 bg-black/95 backdrop-blur-md z-50 overflow-y-auto p-4 md:p-10 flex justify-center items-center">
+        <div class="bg-[#1a1a1a] border border-yellow-500/40 rounded-3xl max-w-xl w-full p-6 md:p-8 shadow-2xl relative">
+            <button onclick="closeAdminDashboard()" class="absolute top-6 right-6 bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white px-3 py-1 rounded-full text-sm transition">✕ Close</button>
+            
+            <h3 class="text-2xl font-playfair font-bold gold-gradient mb-2 text-center">Owner Dashboard</h3>
+            <p class="text-gray-400 text-xs text-center mb-6">Manage gallery photos and pricing effortlessly.</p>
+
+            <!-- Photo Upload Form -->
+            <div class="bg-[#222] p-4 rounded-2xl border border-gray-800 space-y-4 mb-6">
+                <h4 class="text-sm font-semibold text-yellow-400">Upload New Mehndi Design (Full Photo)</h4>
                 <div>
-                    <label class="block text-sm mb-1">Price:</label>
-                    <input type="text" id="imgPrice" placeholder="e.g. ₹3000" class="w-full bg-gray-700 p-2 rounded text-black bg-white">
+                    <label class="block text-xs text-gray-400 mb-1">Select Full Image from Gallery:</label>
+                    <input type="file" id="adminImageFile" accept="image/*" class="w-full text-xs text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-yellow-500 file:text-black hover:file:bg-yellow-400 cursor-pointer">
                 </div>
-                <button onclick="savePhoto()" class="w-full bg-yellow-500 text-black font-bold py-2 rounded hover:bg-yellow-400">Upload to Website</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Design Title:</label>
+                        <input type="text" id="adminImgTitle" placeholder="e.g. Heavy Bridal" class="w-full bg-[#151515] border border-gray-700 rounded-xl p-2.5 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Price:</label>
+                        <input type="text" id="adminImgPrice" placeholder="e.g. ₹4,500" class="w-full bg-[#151515] border border-gray-700 rounded-xl p-2.5 text-xs text-white">
+                    </div>
+                </div>
+                <button onclick="uploadNewPhoto()" class="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold py-2.5 rounded-xl text-xs shadow-md hover:opacity-90 transition">Publish to Website Gallery</button>
             </div>
 
-            <div class="mt-6 border-t border-gray-700 pt-4">
-                <h4 class="text-sm font-bold text-yellow-400 mb-2">Manage Photos:</h4>
-                <div id="adminList" class="space-y-2 max-h-40 overflow-y-auto"></div>
+            <!-- Manage Existing Photos -->
+            <div>
+                <h4 class="text-sm font-semibold text-yellow-400 mb-3">Manage Uploaded Photos:</h4>
+                <div id="adminPhotoList" class="space-y-2 max-h-48 overflow-y-auto pr-2"></div>
             </div>
         </div>
     </div>
 
     <script>
-        let gallery = JSON.parse(localStorage.getItem('sabaGalleryData')) || [
-            { title: "Bridal Special", price: "₹5,000", src: "https://images.unsplash.com/photo-1610173827050-b447dd498e6c?auto=format&fit=crop&w=500&q=80" }
+        // गैलरी डेटा
+        let galleryData = JSON.parse(localStorage.getItem('sabaProGallery')) || [
+            { title: "Bridal Masterpiece", price: "₹6,000", src: "https://images.unsplash.com/photo-1610173827050-b447dd498e6c?auto=format&fit=crop&w=600&q=80" },
+            { title: "Royal Khafif", price: "₹2,500", src: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80" }
         ];
 
-        let clicks = 0;
-        function openAdmin() {
-            clicks++;
-            if(clicks === 5) {
-                let pin = prompt("Enter PIN:");
+        // 5 बार लोगो पर क्लिक करने का काउंटर
+        let clickCount = 0;
+        function openAdminDashboard() {
+            clickCount++;
+            if(clickCount === 5) {
+                let pin = prompt("Enter Admin PIN:");
                 if(pin === "1234") {
                     document.getElementById('adminModal').classList.remove('hidden');
-                    renderAdminList();
+                    renderAdminPhotoList();
                 } else {
-                    alert("Wrong PIN!");
+                    alert("Incorrect PIN!");
                 }
-                clicks = 0;
+                clickCount = 0;
             }
         }
 
-        function closeAdmin() {
+        function closeAdminDashboard() {
             document.getElementById('adminModal').classList.add('hidden');
         }
 
-        function savePhoto() {
-            const fileInput = document.getElementById('imgFile');
-            const title = document.getElementById('imgTitle').value || "Mehndi Design";
-            const price = document.getElementById('imgPrice').value || "₹2,000";
+        // फोटो अपलोड और सेव करने का फंक्शन
+        function uploadNewPhoto() {
+            const fileInput = document.getElementById('adminImageFile');
+            const title = document.getElementById('adminImgTitle').value || "Mehndi Design";
+            const price = document.getElementById('adminImgPrice').value || "₹2,000";
 
             if(fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    gallery.push({ title: title, price: price, src: e.target.result });
-                    localStorage.setItem('sabaGalleryData', JSON.stringify(gallery));
+                    galleryData.push({ title: title, price: price, src: e.target.result });
+                    localStorage.setItem('sabaProGallery', JSON.stringify(galleryData));
                     renderGallery();
-                    renderAdminList();
-                    alert("Saved Successfully!");
+                    renderAdminPhotoList();
+                    alert("फोटो सफलतापूर्वक पब्लिश हो गई है!");
                     fileInput.value = "";
-                    document.getElementById('imgTitle').value = "";
-                    document.getElementById('imgPrice').value = "";
+                    document.getElementById('adminImgTitle').value = "";
+                    document.getElementById('adminImgPrice').value = "";
                 }
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                alert("Please select an image file first!");
+                alert("कृपया पहले गैलरी से कोई फोटो चुनें!");
             }
         }
 
+        // वेबसाइट पर गैलरी दिखाने का फंक्शन
         function renderGallery() {
-            let html = "";
-            gallery.forEach(item => {
-                html += `<div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-lg">
-                            <img src="${item.src}" class="w-full h-56 object-cover">
-                            <div class="p-4 text-center">
-                                <h4 class="text-lg font-bold text-yellow-400">${item.title}</h4>
-                                <p class="text-xl font-semibold text-white mt-1">${item.price}</p>
+            const grid = document.getElementById('dynamicGalleryGrid');
+            grid.innerHTML = "";
+            galleryData.forEach(item => {
+                grid.innerHTML += `
+                    <div class="bg-[#1a1a1a] border border-yellow-600/20 rounded-2xl overflow-hidden shadow-lg hover:border-yellow-500/50 transition">
+                        <img src="${item.src}" class="w-full h-64 object-cover">
+                        <div class="p-4 flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-yellow-400 text-sm">${item.title}</h4>
+                                <span class="text-white font-semibold text-base">${item.price}</span>
                             </div>
-                         </div>`;
+                            <a href="#book" class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-3 py-1.5 rounded-xl text-xs hover:bg-yellow-500 hover:text-black transition">Book</a>
+                        </div>
+                    </div>
+                `;
             });
-            document.getElementById('galleryGrid').innerHTML = html;
         }
 
-        function renderAdminList() {
-            let html = "";
-            gallery.forEach((item, index) => {
-                html += `<div class="flex justify-between items-center bg-gray-900 p-2 rounded text-xs">
-                            <span>${item.title}</span>
-                            <button onclick="deleteItem(${index})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
-                         </div>`;
+        // एडमिन पैनल में लिस्ट दिखाने का फंक्शन
+        function renderAdminPhotoList() {
+            const list = document.getElementById('adminPhotoList');
+            list.innerHTML = "";
+            galleryData.forEach((item, index) => {
+                list.innerHTML += `
+                    <div class="flex justify-between items-center bg-[#151515] p-2.5 rounded-xl border border-gray-800 text-xs">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.src}" class="w-10 h-10 object-cover rounded-lg">
+                            <div>
+                                <p class="font-bold text-gray-200">${item.title}</p>
+                                <p class="text-yellow-500">${item.price}</p>
+                            </div>
+                        </div>
+                        <button onclick="deletePhoto(${index})" class="bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white px-3 py-1.5 rounded-lg transition">Delete</button>
+                    </div>
+                `;
             });
-            document.getElementById('adminList').innerHTML = html;
         }
 
-        function deleteItem(index) {
-            if(confirm("Delete this photo?")) {
-                gallery.splice(index, 1);
-                localStorage.setItem('sabaGalleryData', JSON.stringify(gallery));
+        // फोटो डिलीट करने का फंक्शन
+        function deletePhoto(index) {
+            if(confirm("क्या आप वाकई इस फोटो को हटाना चाहती हैं?")) {
+                galleryData.splice(index, 1);
+                localStorage.setItem('sabaProGallery', JSON.stringify(galleryData));
                 renderGallery();
-                renderAdminList();
+                renderAdminPhotoList();
             }
+        }
+
+        // व्हाट्सएप पर अपॉइंटमेंट बुकिंग भेजने का फंक्शन
+        function submitAppointment(e) {
+            e.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const date = document.getElementById('clientDate').value;
+            const service = document.getElementById('clientService').value;
+
+            const msg = `Hi, I want to book an appointment.%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Date:* ${date}%0A*Service:* ${service}`;
+            window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
         }
 
         renderGallery();
