@@ -1,289 +1,746 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saba Artist - Professional Mehndi Designer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Saba Mehndi Artist</title>
 </head>
-<body class="bg-amber-50 text-gray-800 font-sans">
+<body style="margin:0;">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&family=Hind:wght@400;500;600&display=swap');
 
-    <!-- Header Navigation -->
-    <nav class="bg-rose-900 text-amber-100 p-4 sticky top-0 z-50 shadow-lg">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-wide">Saba Artist</h1>
-            <div class="flex items-center gap-4">
-                <select id="currencySelector" onchange="toggleCurrency()" class="bg-rose-800 text-amber-100 px-3 py-1 rounded border border-rose-700 cursor-pointer">
-                    <option value="INR">₹ INR</option>
-                    <option value="USD">$ USD</option>
-                </select>
-                <button onclick="openLoginModal()" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-1.5 rounded-lg text-sm font-semibold transition">
-                    <i class="fa-solid fa-lock mr-1"></i> Owner Login
-                </button>
-            </div>
+  #saba-root {
+    --ivory: #FBF6EC;
+    --ivory-deep: #F3EBD9;
+    --forest: #24402F;
+    --forest-dark: #16281C;
+    --henna: #7A3418;
+    --maroon: #5C1F2E;
+    --gold: #B8925A;
+    --ink: #2A2118;
+    --ink-soft: #5B4E40;
+    font-family: 'Jost', sans-serif;
+    background: var(--ivory);
+    color: var(--ink);
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  #saba-root * { box-sizing: border-box; }
+  #saba-root .disp { font-family: 'Cormorant Garamond', serif; }
+  #saba-root .hin { font-family: 'Hind', sans-serif; }
+  #saba-root .eyebrow {
+    font-family: 'Jost', sans-serif; text-transform: uppercase; letter-spacing: .28em;
+    font-size: .68rem; color: var(--henna); font-weight: 500;
+  }
+  #saba-root a { color: inherit; text-decoration: none; }
+  #saba-root .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  #saba-root section { position: relative; padding: 88px 0; }
+  #saba-root h1, #saba-root h2, #saba-root h3 { font-weight: 500; margin: 0; color: var(--forest-dark); }
+  #saba-root h2.title { font-size: clamp(2rem, 4.2vw, 3rem); }
+  #saba-root p { line-height: 1.75; color: var(--ink-soft); }
+  #saba-root .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px;
+    border-radius: 2px; font-size: .85rem; letter-spacing: .06em; cursor: pointer;
+    border: 1px solid var(--forest); transition: all .35s ease; font-family: 'Jost', sans-serif;
+  }
+  #saba-root .btn-solid { background: var(--forest); color: var(--ivory); }
+  #saba-root .btn-solid:hover { background: var(--forest-dark); }
+  #saba-root .btn-outline { background: transparent; color: var(--forest); }
+  #saba-root .btn-outline:hover { background: var(--forest); color: var(--ivory); }
+  #saba-root .card {
+    background: #fff; border: 1px solid rgba(36,64,47,.1); border-radius: 3px;
+    position: relative; padding: 34px; transition: transform .4s ease, box-shadow .4s ease;
+  }
+  #saba-root .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(36,64,47,.35); }
+  #saba-root .corner { position: absolute; width: 26px; height: 26px; opacity: .55; }
+  #saba-root .vine-divider { width: 100%; height: 46px; margin: 6px 0; }
+  #saba-root .vine-path {
+    stroke: var(--gold); stroke-width: 1.4; fill: none; stroke-dasharray: 900;
+    stroke-dashoffset: 900; transition: stroke-dashoffset 1.8s ease;
+  }
+  #saba-root .vine-in .vine-path { stroke-dashoffset: 0; }
+  #saba-root nav {
+    position: sticky; top: 0; z-index: 40; background: rgba(251,246,236,.92);
+    backdrop-filter: blur(10px); border-bottom: 1px solid rgba(36,64,47,.12);
+  }
+  #saba-root .navwrap { max-width: 1180px; margin: 0 auto; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; }
+  #saba-root .navlinks { display: flex; gap: 26px; font-size: .82rem; letter-spacing: .03em; }
+  #saba-root .navlinks a { padding: 4px 0; border-bottom: 1px solid transparent; transition: border-color .25s; }
+  #saba-root .navlinks a:hover { border-color: var(--henna); }
+  #saba-root .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; color: var(--forest-dark); font-style: italic; }
+  #saba-root .curr-switch { display: flex; border: 1px solid var(--forest); border-radius: 20px; overflow: hidden; font-size: .72rem; }
+  #saba-root .curr-switch button { padding: 5px 13px; background: transparent; border: none; cursor: pointer; color: var(--forest); font-family: 'Jost'; }
+  #saba-root .curr-switch button.active { background: var(--forest); color: #fff; }
+  #saba-root .hero { padding-top: 60px; overflow: hidden; }
+  #saba-root .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: center; }
+  #saba-root .hero-frame {
+    aspect-ratio: 3/4; border-radius: 260px 260px 20px 20px; overflow: hidden;
+    border: 10px solid #fff; box-shadow: 0 30px 60px -25px rgba(36,64,47,.45); position: relative;
+    background: linear-gradient(160deg, var(--ivory-deep), #e9dcc0);
+  }
+  #saba-root .hero-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #saba-root .bg-vine { position: absolute; inset: 0; opacity: .08; pointer-events: none; z-index: 0; }
+  #saba-root .pill { display: inline-block; padding: 6px 16px; border: 1px solid var(--gold); border-radius: 30px; font-size: .72rem; letter-spacing: .1em; color: var(--henna); margin-bottom: 18px; }
+  #saba-root .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  #saba-root .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+  #saba-root .gal-item { border-radius: 4px; overflow: hidden; aspect-ratio: 4/5; position: relative; cursor: pointer; }
+  #saba-root .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  #saba-root .gal-item:hover img { transform: scale(1.08); }
+  #saba-root .gal-tag { position: absolute; bottom: 10px; left: 10px; background: rgba(36,64,47,.85); color: #fff; font-size: .65rem; letter-spacing: .08em; padding: 4px 10px; text-transform: uppercase; }
+  #saba-root .filter-row { display: flex; gap: 10px; margin: 30px 0 34px; flex-wrap: wrap; }
+  #saba-root .filter-btn { padding: 7px 18px; border: 1px solid var(--forest); border-radius: 30px; font-size: .78rem; cursor: pointer; background: transparent; color: var(--forest); }
+  #saba-root .filter-btn.active { background: var(--forest); color: #fff; }
+  #saba-root .price { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; color: var(--henna); }
+  #saba-root .price small { font-size: 1rem; color: var(--ink-soft); font-family: 'Jost'; }
+  #saba-root .divider-title { display: flex; align-items: center; gap: 18px; margin-bottom: 8px; }
+  #saba-root .divider-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(184,146,90,.6), transparent); }
+  #saba-root input, #saba-root textarea, #saba-root select {
+    width: 100%; padding: 12px 14px; border: 1px solid rgba(36,64,47,.25); border-radius: 2px;
+    background: #fff; font-family: 'Jost'; font-size: .88rem; color: var(--ink); outline: none;
+  }
+  #saba-root input:focus, #saba-root textarea:focus, #saba-root select:focus { border-color: var(--henna); }
+  #saba-root label { font-size: .74rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+  #saba-root .field { margin-bottom: 16px; }
+  #saba-root footer { background: var(--forest-dark); color: #eee6d4; padding: 56px 0 26px; }
+  #saba-root footer a:hover { color: var(--gold); }
+  #saba-root .wa-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 50; width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(0,0,0,.28);
+    cursor: pointer;
+  }
+  #saba-root .star { color: var(--gold); }
+  #saba-root .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  #saba-root .fade-up.in { opacity: 1; transform: translateY(0); }
+  #saba-root .admin-tab { padding: 10px 20px; cursor: pointer; font-size: .82rem; border-bottom: 2px solid transparent; color: var(--ink-soft); }
+  #saba-root .admin-tab.active { color: var(--forest-dark); border-color: var(--henna); font-weight: 500; }
+  #saba-root .badge { font-size: .68rem; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em; }
+  #saba-root .badge.pending { background: #F4E3C8; color: #8a5a12; }
+  #saba-root .badge.confirmed { background: #d8e6da; color: #24402F; }
+  #saba-root .badge.completed { background: #dce7f0; color: #2a4a63; }
+  #saba-root .thumb-sm { width: 64px; height: 64px; object-fit: cover; border-radius: 3px; }
+  #saba-root .x-del { color: #a33; cursor: pointer; font-size: .75rem; }
+  #saba-root .toast {
+    position: fixed; top: 18px; left: 50%; transform: translateX(-50%); background: var(--forest);
+    color: #fff; padding: 12px 24px; border-radius: 3px; font-size: .85rem; z-index: 100;
+    opacity: 0; transition: opacity .3s, top .3s; pointer-events: none;
+  }
+  #saba-root .toast.show { opacity: 1; top: 32px; }
+  @media (max-width: 860px) {
+    #saba-root .navlinks { display: none; }
+    #saba-root .hero-grid { grid-template-columns: 1fr; }
+    #saba-root .grid3 { grid-template-columns: 1fr 1fr; }
+    #saba-root .grid2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    #saba-root .grid3 { grid-template-columns: 1fr; }
+    #saba-root section { padding: 60px 0; }
+  }
+</style>
+
+<div id="saba-root">
+  <div id="saba-toast" class="toast"></div>
+  <div id="saba-app"></div>
+</div>
+
+<script>
+(function(){
+
+const KEYS = {
+  content: 'saba-site-content',
+  services: 'saba-services',
+  gallery: 'saba-gallery',
+  bookings: 'saba-bookings',
+  reviews: 'saba-reviews',
+};
+
+const DEFAULTS = {
+  content: {
+    name: "Saba Mehndi Artist",
+    tagline: "हाथों पर उकेरी हुई कहानियाँ",
+    about: "10+ सालों से मैं दुल्हनों और उनके परिवारों के लिए intricate, personal mehndi designs बनाती आ रही हूँ। हर design आपकी कहानी, आपकी शादी, आपके पल के हिसाब से बनाया जाता है — traditional Rajasthani-Marwari जड़ों से लेकर आधुनिक Arabic strokes तक।",
+    phone: "+91 98765 43210",
+    whatsapp: "919876543210",
+    address: "Shop 12, Rani Bazaar Road, Patna, Bihar 800001",
+    instagram: "instagram.com/saba.mehndiart",
+    hours: "सोम–शनि · सुबह 10 — रात 8",
+    heroPhoto: "",
+    aboutPhoto: ""
+  },
+  services: [
+    { id: 's1', name: 'Bridal Mehndi', desc: 'Full hands & feet, intricate detailing, engagement + wedding combo available.', priceINR: 15000 },
+    { id: 's2', name: 'Engagement Mehndi', desc: 'Elegant semi-bridal design for both hands.', priceINR: 4500 },
+    { id: 's3', name: 'Party Mehndi', desc: 'Quick elegant design for one hand, festive occasions.', priceINR: 800 },
+    { id: 's4', name: 'Arabic Mehndi', desc: 'Bold floral trails, both hands, modern finish.', priceINR: 1500 },
+  ],
+  gallery: [],
+  bookings: [],
+  reviews: [
+    { id: 'r1', name: 'Ayesha K.', text: 'सबा जी ने मेरी शादी की मेहंदी इतनी खूबसूरत बनाई — सब compliment दे रहे थे!', rating: 5 },
+    { id: 'r2', name: 'Priya S.', text: 'Booked her for my engagement — super patient, gorgeous Arabic design.', rating: 5 },
+  ]
+};
+
+const RATE = 1/83; // INR to USD
+
+let state = {
+  content: {...DEFAULTS.content},
+  services: [...DEFAULTS.services],
+  gallery: [...DEFAULTS.gallery],
+  bookings: [...DEFAULTS.bookings],
+  reviews: [...DEFAULTS.reviews],
+  currency: 'INR',
+  galFilter: 'All',
+  view: 'site', // site | login | dashboard
+  adminTab: 'photos',
+  loggedIn: false,
+};
+
+async function loadAll() {
+  for (const k of Object.keys(KEYS)) {
+    try {
+      const r = await window.storage.get(KEYS[k], true);
+      if (r && r.value) state[k] = JSON.parse(r.value);
+    } catch(e) { /* key not found yet, keep default */ }
+  }
+  render();
+}
+async function save(k) {
+  try { await window.storage.set(KEYS[k], JSON.stringify(state[k]), true); }
+  catch(e) { toast('Save failed — try again'); }
+}
+function toast(msg) {
+  const t = document.getElementById('saba-toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+function fmt(inr) {
+  if (state.currency === 'INR') return '₹' + Number(inr).toLocaleString('en-IN');
+  return '$' + Math.round(inr * RATE).toLocaleString('en-US');
+}
+function uid() { return 'id' + Math.random().toString(36).slice(2,9); }
+
+function vine() {
+  return `<svg class="vine-divider vine-in" viewBox="0 0 400 46" preserveAspectRatio="none">
+    <path class="vine-path" d="M0 23 Q 40 5, 80 23 T 160 23 Q 180 10, 200 23 Q 220 36, 240 23 T 320 23 Q 360 5, 400 23"/>
+    <circle cx="80" cy="23" r="2.4" fill="#B8925A"/><circle cx="200" cy="23" r="2.4" fill="#B8925A"/><circle cx="320" cy="23" r="2.4" fill="#B8925A"/>
+  </svg>`;
+}
+function bgVine() {
+  return `<svg class="bg-vine" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+    <path d="M-20 300 Q 100 100, 220 300 T 460 300 Q 580 100, 700 300 T 940 300" stroke="#24402F" stroke-width="2" fill="none"/>
+    <path d="M-20 380 Q 100 180, 220 380 T 460 380 Q 580 180, 700 380 T 940 380" stroke="#7A3418" stroke-width="1.4" fill="none"/>
+  </svg>`;
+}
+
+function render() {
+  const app = document.getElementById('saba-app');
+  if (state.view === 'login') { app.innerHTML = loginView(); attachLogin(); return; }
+  if (state.view === 'dashboard') { app.innerHTML = dashboardView(); attachDashboard(); return; }
+  app.innerHTML = siteView();
+  attachSite();
+  requestAnimationFrame(()=> {
+    document.querySelectorAll('#saba-root .fade-up').forEach(el=>el.classList.add('in'));
+  });
+}
+
+// ---------- CUSTOMER SITE ----------
+function siteView() {
+  const c = state.content;
+  return `
+  <nav>
+    <div class="navwrap">
+      <a href="#home-s" class="logo">${c.name}</a>
+      <div class="navlinks">
+        <a href="#about-s">About</a><a href="#gallery-s">Gallery</a><a href="#services-s">Services</a>
+        <a href="#book-s">Booking</a><a href="#reviews-s">Reviews</a><a href="#contact-s">Contact</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="curr-switch">
+          <button data-c="INR" class="${state.currency==='INR'?'active':''}">₹ INR</button>
+          <button data-c="USD" class="${state.currency==='USD'?'active':''}">$ USD</button>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="text-center py-12 px-4 bg-rose-800 text-white">
-        <h2 class="text-4xl font-extrabold mb-2">Exquisite Mehndi Designs</h2>
-        <p class="text-amber-200">Bridal, Arabic, Modern & Traditional Mehndi Specialist</p>
-    </section>
-
-    <!-- Owner Dashboard (Hidden by Default) -->
-    <div id="ownerDashboard" class="hidden max-w-6xl mx-auto my-8 p-6 bg-white rounded-xl shadow-xl border-2 border-amber-500">
-        <div class="flex justify-between items-center mb-6 border-b pb-4">
-            <h2 class="text-2xl font-bold text-rose-900"><i class="fa-solid fa-gauge mr-2"></i> Owner Dashboard</h2>
-            <button onclick="logoutOwner()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-lg text-sm font-bold">Logout</button>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Add New Design Form -->
-            <div class="bg-amber-50 p-5 rounded-lg border border-amber-200">
-                <h3 class="font-bold text-lg mb-4 text-rose-900"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Upload New Design / Photo</h3>
-                <form id="addDesignForm" onsubmit="addDesign(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Design Title</label>
-                        <input type="text" id="designTitle" placeholder="e.g. Royal Bridal Mehndi" required class="w-full p-2 border rounded bg-white">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Select Photo from Device</label>
-                        <input type="file" id="designImageFile" accept="image/*" required class="w-full p-2 border rounded bg-white cursor-pointer file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-rose-100 file:text-rose-800 hover:file:bg-rose-200">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Price in ₹ (INR)</label>
-                            <input type="number" id="priceINR" placeholder="2500" required class="w-full p-2 border rounded bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Price in $ (USD)</label>
-                            <input type="number" id="priceUSD" placeholder="30" required class="w-full p-2 border rounded bg-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
-                        <textarea id="designDesc" placeholder="Describe your design details..." required class="w-full p-2 border rounded bg-white h-20"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-emerald-700 text-white py-2.5 rounded-lg font-bold hover:bg-emerald-800 transition">
-                        <i class="fa-solid fa-plus-circle mr-1"></i> Publish Design to Website
-                    </button>
-                </form>
-            </div>
-
-            <!-- Manage Contact & Social Info -->
-            <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 flex flex-col justify-between">
-                <div>
-                    <h3 class="font-bold text-lg mb-4 text-rose-900"><i class="fa-solid fa-sliders mr-2"></i>Update Profile & Contact Info</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Gmail Address</label>
-                            <input type="email" id="settingGmail" placeholder="sabaartist@gmail.com" class="w-full p-2 border rounded bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Phone / WhatsApp</label>
-                            <input type="text" id="settingPhone" placeholder="+91 9876543210" class="w-full p-2 border rounded bg-white">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Instagram Link</label>
-                            <input type="text" id="settingInsta" placeholder="https://instagram.com/saba_artist" class="w-full p-2 border rounded bg-white">
-                        </div>
-                        <button onclick="saveProfileSettings()" class="w-full bg-rose-800 text-white py-2.5 rounded-lg font-bold hover:bg-rose-900 transition mt-2">
-                            <i class="fa-solid fa-floppy-disk mr-1"></i> Save Profile Settings
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a href="#" id="owner-link" style="font-size:.72rem;color:#5B4E40;border-bottom:1px solid #B8925A;">Owner Login</a>
+      </div>
     </div>
+  </nav>
 
-    <!-- Main Content: Gallery -->
-    <main class="max-w-6xl mx-auto p-6">
-        <h3 class="text-2xl font-bold text-rose-900 mb-6 text-center">Design Gallery</h3>
-        <div id="galleryContainer" class="grid md:grid-cols-3 gap-6">
-            <!-- Dynamic Gallery Cards loaded here -->
+  <section class="hero" id="home-s">
+    ${bgVine()}
+    <div class="wrap hero-grid" style="position:relative;z-index:1;">
+      <div class="fade-up">
+        <div class="pill">Bridal · Party · Arabic Mehndi</div>
+        <h1 class="disp" style="font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:1.05;color:#16281C;">
+          हर लकीर में <em style="color:#7A3418;">कहानी</em><br/>छुपी होती है
+        </h1>
+        <p class="hin" style="max-width:480px;margin:22px 0 30px;font-size:1.02rem;">${c.tagline} — ${c.name} आपकी शादी और खास मौकों को हाथों पर उकेरती हैं, पूरी तरह personalised।</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="#book-s" class="btn btn-solid">Book Appointment</a>
+          <a href="#gallery-s" class="btn btn-outline">View Gallery</a>
         </div>
-    </main>
-
-    <!-- Booking Form Section -->
-    <section class="max-w-2xl mx-auto my-12 p-6 bg-white rounded-xl shadow-md border border-amber-200">
-        <h3 class="text-2xl font-bold text-rose-900 mb-4 text-center">Book Appointment</h3>
-        <form onsubmit="handleBooking(event)" class="space-y-4">
-            <input type="text" placeholder="Your Name" required class="w-full p-2 border rounded">
-            <input type="tel" placeholder="Phone Number" required class="w-full p-2 border rounded">
-            <input type="date" required class="w-full p-2 border rounded">
-            <button type="submit" class="w-full bg-rose-800 text-amber-100 py-2.5 rounded font-bold hover:bg-rose-900 transition">Submit Booking Request</button>
-        </form>
-    </section>
-
-    <!-- Footer / Contact Info -->
-    <footer class="bg-rose-950 text-amber-100 py-8 text-center">
-        <p id="displayGmail" class="mb-2"><i class="fa-solid fa-envelope mr-2"></i> sabaartist@gmail.com</p>
-        <p id="displayPhone" class="mb-4"><i class="fa-solid fa-phone mr-2"></i> +91 9876543210</p>
-        <div class="flex justify-center space-x-4 mb-4">
-            <a id="displayInsta" href="#" target="_blank" class="text-2xl hover:text-amber-400 transition"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-        <p class="text-xs text-rose-300">© Saba Artist - Professional Mehndi Services</p>
-    </footer>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
-        <div class="bg-white p-6 rounded-lg w-full max-w-md shadow-2xl">
-            <h3 class="text-xl font-bold text-rose-900 mb-4"><i class="fa-solid fa-user-lock mr-2"></i>Owner Authentication</h3>
-            <div class="space-y-3">
-                <input type="text" id="ownerCode" placeholder="Enter Security Code (SABA2026)" class="w-full p-2 border rounded">
-                <input type="password" id="ownerPassword" placeholder="Enter Password (saba123)" class="w-full p-2 border rounded">
-                <p id="loginError" class="text-red-600 text-sm hidden">Invalid Security Code or Password!</p>
-                <div class="flex justify-end gap-2 pt-2">
-                    <button onclick="closeLoginModal()" class="px-4 py-2 border rounded text-gray-600 hover:bg-gray-100">Cancel</button>
-                    <button onclick="verifyOwner()" class="px-4 py-2 bg-rose-800 text-white rounded font-bold hover:bg-rose-900">Login</button>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="hero-frame fade-up">
+        ${c.heroPhoto ? `<img src="${c.heroPhoto}"/>` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#8a7a5c;font-family:'Cormorant Garamond';font-style:italic;font-size:1.2rem;">Hero photo — add from Owner Dashboard</div>`}
+      </div>
     </div>
+  </section>
 
-    <!-- JavaScript logic -->
-    <script>
-        const AUTH_CODE = "SABA2026";
-        const AUTH_PASS = "saba123";
+  <section id="about-s">
+    <div class="wrap">
+      <div class="grid2" style="align-items:center;">
+        <div class="fade-up" style="border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:#F3EBD9;">
+          ${c.aboutPhoto ? `<img src="${c.aboutPhoto}" style="width:100%;height:100%;object-fit:cover;"/>` : `<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#8a7a5c;font-style:italic;font-family:'Cormorant Garamond';">About photo</div>`}
+        </div>
+        <div class="fade-up">
+          <div class="eyebrow">About the Artist</div>
+          <div class="divider-title"><h2 class="title disp">${c.name}</h2></div>
+          ${vine()}
+          <p class="hin" style="font-size:1rem;">${c.about}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        let isOwnerLoggedIn = false;
-        let currentCurrency = "INR";
-        let designs = JSON.parse(localStorage.getItem("saba_designs")) || [
-            {
-                id: 1,
-                title: "Bridal Full Hand Mehndi",
-                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80",
-                priceINR: "2500",
-                priceUSD: "30",
-                desc: "Intricate traditional bridal design covering full hands."
-            }
-        ];
+  <section id="gallery-s" style="background:#F3EBD9;">
+    <div class="wrap">
+      <div class="eyebrow" style="text-align:center;">Portfolio</div>
+      <h2 class="title disp fade-up" style="text-align:center;">Mehndi Designs Gallery</h2>
+      <div class="filter-row" style="justify-content:center;">
+        ${['All','Bridal','Engagement / Party','Arabic'].map(f=>`<button class="filter-btn ${state.galFilter===f?'active':''}" data-f="${f}">${f}</button>`).join('')}
+      </div>
+      <div class="grid3" id="gal-grid">
+        ${galleryHTML()}
+      </div>
+    </div>
+  </section>
 
-        function renderGallery() {
-            const container = document.getElementById("galleryContainer");
-            container.innerHTML = "";
-            designs.forEach((d, index) => {
-                const price = currentCurrency === "INR" ? `₹${d.priceINR}` : `$${d.priceUSD}`;
-                const deleteBtn = isOwnerLoggedIn ? 
-                    `<button onclick="deleteDesign(${index})" class="w-full mt-3 bg-red-100 text-red-700 py-1.5 rounded font-semibold text-xs hover:bg-red-200 transition"><i class="fa-solid fa-trash mr-1"></i> Remove Design</button>` : '';
+  <section id="services-s">
+    <div class="wrap">
+      <div class="eyebrow" style="text-align:center;">Services & Pricing</div>
+      <h2 class="title disp fade-up" style="text-align:center;">What I Offer</h2>
+      <div class="grid3" style="margin-top:36px;">
+        ${state.services.map(s=>`
+          <div class="card fade-up">
+            <h3 class="disp" style="font-size:1.4rem;margin-bottom:10px;">${s.name}</h3>
+            <p style="font-size:.9rem;margin-bottom:18px;">${s.desc}</p>
+            <div class="price">${fmt(s.priceINR)} <small>onwards</small></div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>
 
-                container.innerHTML += `
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden border border-amber-200 flex flex-col justify-between">
-                        <div>
-                            <img src="${d.image}" alt="${d.title}" class="w-full h-56 object-cover">
-                            <div class="p-4">
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-bold text-lg text-rose-950">${d.title}</h4>
-                                    <span class="bg-rose-100 text-rose-900 text-sm font-bold px-2.5 py-1 rounded-full">${price}</span>
-                                </div>
-                                <p class="text-gray-600 text-sm">${d.desc}</p>
-                            </div>
-                        </div>
-                        <div class="p-4 pt-0">
-                            ${deleteBtn}
-                        </div>
-                    </div>
-                `;
-            });
-        }
+  <section id="book-s" style="background:#F3EBD9;">
+    <div class="wrap" style="max-width:640px;">
+      <div class="eyebrow" style="text-align:center;">Reserve Your Date</div>
+      <h2 class="title disp fade-up" style="text-align:center;margin-bottom:30px;">Booking / Appointment</h2>
+      <form id="booking-form" class="card fade-up">
+        <div class="field"><label>Name</label><input required name="name" placeholder="Your name"/></div>
+        <div class="grid2" style="gap:16px;">
+          <div class="field"><label>Phone / WhatsApp</label><input required name="phone" placeholder="10-digit number"/></div>
+          <div class="field"><label>Preferred Date</label><input required type="date" name="date"/></div>
+        </div>
+        <div class="field"><label>Service</label>
+          <select name="service">${state.services.map(s=>`<option>${s.name}</option>`).join('')}</select>
+        </div>
+        <div class="field"><label>Message (optional)</label><textarea name="msg" rows="3" placeholder="Occasion, location, guest count..."></textarea></div>
+        <button type="submit" class="btn btn-solid" style="width:100%;justify-content:center;">Submit Booking Request</button>
+      </form>
+    </div>
+  </section>
 
-        function toggleCurrency() {
-            currentCurrency = document.getElementById("currencySelector").value;
-            renderGallery();
-        }
+  <section id="reviews-s">
+    <div class="wrap">
+      <div class="eyebrow" style="text-align:center;">Kind Words</div>
+      <h2 class="title disp fade-up" style="text-align:center;">Customer Reviews</h2>
+      <div class="grid3" style="margin-top:34px;">
+        ${state.reviews.map(r=>`
+          <div class="card fade-up">
+            <div>${'★'.repeat(r.rating)}<span style="color:#ddd;">${'★'.repeat(5-r.rating)}</span></div>
+            <p style="margin:14px 0;font-style:italic;">"${r.text}"</p>
+            <div class="disp" style="color:#24402F;font-size:1.05rem;">— ${r.name}</div>
+          </div>`).join('')}
+      </div>
+      <form id="review-form" class="card fade-up" style="max-width:520px;margin:40px auto 0;">
+        <div class="eyebrow" style="margin-bottom:14px;">Leave a Review</div>
+        <div class="field"><label>Name</label><input required name="name"/></div>
+        <div class="field"><label>Rating</label>
+          <select name="rating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option></select>
+        </div>
+        <div class="field"><label>Review</label><textarea required name="text" rows="3"></textarea></div>
+        <button type="submit" class="btn btn-outline" style="width:100%;justify-content:center;">Submit Review</button>
+      </form>
+    </div>
+  </section>
 
-        function openLoginModal() {
-            document.getElementById("loginModal").classList.remove("hidden");
-            document.getElementById("loginModal").classList.add("flex");
-        }
+  <section id="contact-s" style="background:#F3EBD9;">
+    <div class="wrap grid2">
+      <div class="fade-up">
+        <div class="eyebrow">Get in Touch</div>
+        <h2 class="title disp" style="margin-bottom:20px;">Contact / Location</h2>
+        <p>📞 ${c.phone}</p>
+        <p>📍 ${c.address}</p>
+        <p>🕒 ${c.hours}</p>
+        <p>📷 ${c.instagram}</p>
+        <a href="https://wa.me/${c.whatsapp}" target="_blank" class="btn btn-solid" style="margin-top:16px;">Chat on WhatsApp</a>
+      </div>
+      <div class="fade-up" style="border-radius:4px;overflow:hidden;min-height:280px;">
+        <iframe src="https://www.google.com/maps?q=${encodeURIComponent(c.address)}&output=embed" style="width:100%;height:100%;min-height:280px;border:0;"></iframe>
+      </div>
+    </div>
+  </section>
 
-        function closeLoginModal() {
-            document.getElementById("loginModal").classList.add("hidden");
-            document.getElementById("loginModal").classList.remove("flex");
-        }
+  <footer>
+    <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div class="disp" style="font-size:1.3rem;font-style:italic;">${c.name}</div>
+      <div style="font-size:.8rem;opacity:.75;">© ${new Date().getFullYear()} · ${c.address}</div>
+    </div>
+  </footer>
 
-        function verifyOwner() {
-            const code = document.getElementById("ownerCode").value;
-            const pass = document.getElementById("ownerPassword").value;
-            if(code === AUTH_CODE && pass === AUTH_PASS) {
-                isOwnerLoggedIn = true;
-                closeLoginModal();
-                document.getElementById("ownerDashboard").classList.remove("hidden");
-                renderGallery();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                document.getElementById("loginError").classList.remove("hidden");
-            }
-        }
+  <a href="https://wa.me/${c.whatsapp}" target="_blank" class="wa-fab" title="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.14a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.53 3.69-8.22 8.24-8.22 4.53 0 8.22 3.69 8.22 8.22 0 4.54-3.69 8.23-8.21 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.78.96-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+  </a>
+  `;
+}
 
-        function logoutOwner() {
-            isOwnerLoggedIn = false;
-            document.getElementById("ownerDashboard").classList.add("hidden");
-            renderGallery();
-        }
+function galleryHTML() {
+  let items = state.gallery;
+  if (state.galFilter !== 'All') items = items.filter(g => g.category === state.galFilter);
+  if (!items.length) return `<div style="grid-column:1/-1;text-align:center;color:#8a7a5c;font-style:italic;font-family:'Cormorant Garamond';padding:40px 0;">No photos yet in this category — add some from the Owner Dashboard.</div>`;
+  return items.map(g => `
+    <div class="gal-item fade-up">
+      <img src="${g.url}"/>
+      <div class="gal-tag">${g.category}</div>
+    </div>`).join('');
+}
 
-        function addDesign(e) {
-            e.preventDefault();
-            const fileInput = document.getElementById("designImageFile");
-            const file = fileInput.files[0];
+function attachSite() {
+  document.querySelectorAll('#saba-root .curr-switch button').forEach(b=>{
+    b.onclick = () => { state.currency = b.dataset.c; render(); };
+  });
+  document.getElementById('owner-link').onclick = (e) => { e.preventDefault(); state.view='login'; render(); };
+  document.querySelectorAll('#saba-root .filter-btn').forEach(b=>{
+    b.onclick = () => { state.galFilter = b.dataset.f; render(); };
+  });
+  const bf = document.getElementById('booking-form');
+  if (bf) bf.onsubmit = async (e) => {
+    e.preventDefault();
+    const fd = new FormData(bf);
+    state.bookings.unshift({
+      id: uid(), name: fd.get('name'), phone: fd.get('phone'), date: fd.get('date'),
+      service: fd.get('service'), msg: fd.get('msg'), status: 'Pending', created: new Date().toISOString()
+    });
+    await save('bookings');
+    bf.reset();
+    toast('Booking request sent! Saba will confirm on WhatsApp soon.');
+  };
+  const rf = document.getElementById('review-form');
+  if (rf) rf.onsubmit = async (e) => {
+    e.preventDefault();
+    const fd = new FormData(rf);
+    state.reviews.unshift({ id: uid(), name: fd.get('name'), text: fd.get('text'), rating: Number(fd.get('rating')) });
+    await save('reviews');
+    rf.reset();
+    toast('Thank you for your review!');
+    render();
+  };
+}
 
-            if (!file) {
-                alert("Please select an image file to upload!");
-                return;
-            }
+// ---------- OWNER LOGIN ----------
+function loginView() {
+  return `
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
+    <div class="card fade-up in" style="max-width:380px;width:100%;">
+      <div class="eyebrow">Owner Access</div>
+      <h2 class="disp" style="font-size:1.7rem;margin:6px 0 22px;">${state.content.name} — Dashboard Login</h2>
+      <div class="field"><label>Username</label><input id="lg-user" placeholder="saba"/></div>
+      <div class="field"><label>Password</label><input id="lg-pass" type="password" placeholder="••••••••"/></div>
+      <div id="lg-err" style="color:#a33;font-size:.8rem;margin-bottom:10px;"></div>
+      <button id="lg-btn" class="btn btn-solid" style="width:100%;justify-content:center;">Secure Login</button>
+      <div style="margin-top:14px;font-size:.75rem;text-align:center;"><a href="#" id="lg-back" style="color:#5B4E40;">← Back to website</a></div>
+      <div style="margin-top:16px;font-size:.68rem;color:#a08b6a;text-align:center;">Demo login — username <b>saba</b> / password <b>mehndi123</b></div>
+    </div>
+  </div>`;
+}
+function attachLogin() {
+  document.getElementById('lg-back').onclick = (e)=>{ e.preventDefault(); state.view='site'; render(); };
+  document.getElementById('lg-btn').onclick = () => {
+    const u = document.getElementById('lg-user').value.trim();
+    const p = document.getElementById('lg-pass').value.trim();
+    if (u === 'saba' && p === 'mehndi123') {
+      state.loggedIn = true; state.view = 'dashboard'; state.adminTab='photos'; render();
+    } else {
+      document.getElementById('lg-err').textContent = 'Incorrect username or password.';
+    }
+  };
+}
 
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const base64Image = event.target.result;
-                const newDesign = {
-                    id: Date.now(),
-                    title: document.getElementById("designTitle").value,
-                    image: base64Image,
-                    priceINR: document.getElementById("priceINR").value,
-                    priceUSD: document.getElementById("priceUSD").value,
-                    desc: document.getElementById("designDesc").value
-                };
+// ---------- DASHBOARD ----------
+function dashboardView() {
+  const tabs = [['photos','Photos'],['pricing','Pricing'],['services','Services'],['content','Website Content'],['bookings','Bookings'],['reviews','Reviews']];
+  return `
+  <div style="min-height:100vh;">
+    <nav><div class="navwrap">
+      <div class="logo">${state.content.name} <span style="font-size:.7rem;color:#7A3418;">— Owner Dashboard</span></div>
+      <div style="display:flex;gap:14px;align-items:center;">
+        <a href="#" id="dash-view-site" style="font-size:.8rem;">View Website ↗</a>
+        <button id="dash-logout" class="btn btn-outline" style="padding:8px 18px;">Logout</button>
+      </div>
+    </div></nav>
+    <div class="wrap" style="padding-top:30px;">
+      <div style="display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid rgba(36,64,47,.15);margin-bottom:30px;">
+        ${tabs.map(([k,l])=>`<div class="admin-tab ${state.adminTab===k?'active':''}" data-tab="${k}">${l}</div>`).join('')}
+      </div>
+      <div id="admin-panel">${adminPanel()}</div>
+    </div>
+  </div>`;
+}
 
-                designs.unshift(newDesign);
-                localStorage.setItem("saba_designs", JSON.stringify(designs));
-                renderGallery();
-                document.getElementById("addDesignForm").reset();
-                alert("New Mehndi Design Photo Uploaded Successfully!");
-            };
-            reader.readAsDataURL(file);
-        }
+function adminPanel() {
+  if (state.adminTab === 'photos') return panelPhotos();
+  if (state.adminTab === 'pricing') return panelPricing();
+  if (state.adminTab === 'services') return panelServices();
+  if (state.adminTab === 'content') return panelContent();
+  if (state.adminTab === 'bookings') return panelBookings();
+  if (state.adminTab === 'reviews') return panelReviews();
+}
 
-        function deleteDesign(index) {
-            if(confirm("Are you sure you want to delete this design?")) {
-                designs.splice(index, 1);
-                localStorage.setItem("saba_designs", JSON.stringify(designs));
-                renderGallery();
-            }
-        }
+function panelPhotos() {
+  const c = state.content;
+  return `
+  <div class="grid2" style="margin-bottom:36px;">
+    <div class="card">
+      <h3 class="disp" style="margin-bottom:10px;">Hero Photo</h3>
+      ${c.heroPhoto ? `<img src="${c.heroPhoto}" style="width:100%;border-radius:4px;margin-bottom:12px;max-height:220px;object-fit:cover;"/>` : `<p style="font-size:.85rem;">No photo set.</p>`}
+      <input type="file" accept="image/*" id="hero-upload"/>
+    </div>
+    <div class="card">
+      <h3 class="disp" style="margin-bottom:10px;">About / Profile Photo</h3>
+      ${c.aboutPhoto ? `<img src="${c.aboutPhoto}" style="width:100%;border-radius:4px;margin-bottom:12px;max-height:220px;object-fit:cover;"/>` : `<p style="font-size:.85rem;">No photo set.</p>`}
+      <input type="file" accept="image/*" id="about-upload"/>
+    </div>
+  </div>
+  <h3 class="disp" style="margin-bottom:14px;">Gallery Photos</h3>
+  <div class="card" style="margin-bottom:24px;">
+    <div class="grid2" style="gap:14px;align-items:end;">
+      <div class="field" style="margin:0;"><label>Category</label>
+        <select id="gal-cat"><option>Bridal</option><option>Engagement / Party</option><option>Arabic</option></select>
+      </div>
+      <div class="field" style="margin:0;"><label>Upload Photo</label><input type="file" accept="image/*" id="gal-upload"/></div>
+    </div>
+  </div>
+  <div class="grid3">
+    ${state.gallery.map(g=>`
+      <div class="card" style="padding:12px;">
+        <img class="thumb-sm" style="width:100%;height:120px;" src="${g.url}"/>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:.75rem;">
+          <span>${g.category}</span><span class="x-del" data-del-gal="${g.id}">Delete</span>
+        </div>
+      </div>`).join('') || `<p style="font-size:.85rem;">No gallery photos uploaded yet.</p>`}
+  </div>
+  <p style="font-size:.72rem;color:#a08b6a;margin-top:20px;">Note: photos are stored as compact embedded images in the site's data store — great for a working demo, but for a public production launch you'll want real image/CDN hosting (see note below the dashboard).</p>
+  `;
+}
 
-        function saveProfileSettings() {
-            const gmail = document.getElementById("settingGmail").value;
-            const phone = document.getElementById("settingPhone").value;
-            const insta = document.getElementById("settingInsta").value;
+function panelPricing() {
+  return `
+  <div class="card">
+    <h3 class="disp" style="margin-bottom:16px;">Service Pricing (₹ base — $ auto-converted)</h3>
+    ${state.services.map(s=>`
+      <div class="field" style="display:grid;grid-template-columns:1fr 160px;gap:14px;align-items:center;">
+        <label style="margin:0;text-transform:none;font-size:.9rem;color:#2A2118;">${s.name}</label>
+        <input data-price="${s.id}" type="number" value="${s.priceINR}"/>
+      </div>`).join('')}
+    <button id="save-pricing" class="btn btn-solid" style="margin-top:10px;">Save Prices</button>
+  </div>`;
+}
 
-            if(gmail) document.getElementById("displayGmail").innerHTML = `<i class="fa-solid fa-envelope mr-2"></i> ${gmail}`;
-            if(phone) document.getElementById("displayPhone").innerHTML = `<i class="fa-solid fa-phone mr-2"></i> ${phone}`;
-            if(insta) document.getElementById("displayInsta").href = insta;
-            alert("Profile & Contact settings updated successfully!");
-        }
+function panelServices() {
+  return `
+  <div class="grid2" style="gap:20px;">
+    ${state.services.map(s=>`
+      <div class="card">
+        <div class="field"><label>Name</label><input data-sname="${s.id}" value="${s.name}"/></div>
+        <div class="field"><label>Description</label><textarea data-sdesc="${s.id}" rows="2">${s.desc}</textarea></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <button data-savesvc="${s.id}" class="btn btn-outline" style="padding:8px 16px;">Save</button>
+          <span class="x-del" data-delsvc="${s.id}">Delete Service</span>
+        </div>
+      </div>`).join('')}
+  </div>
+  <div class="card" style="margin-top:22px;max-width:420px;">
+    <h3 class="disp" style="margin-bottom:10px;">Add New Service</h3>
+    <div class="field"><label>Name</label><input id="new-sname"/></div>
+    <div class="field"><label>Description</label><textarea id="new-sdesc" rows="2"></textarea></div>
+    <div class="field"><label>Price (₹)</label><input id="new-sprice" type="number"/></div>
+    <button id="add-service" class="btn btn-solid">Add Service</button>
+  </div>`;
+}
 
-        function handleBooking(e) {
-            e.preventDefault();
-            alert("Booking request submitted! Saba Artist will contact you shortly.");
-        }
+function panelContent() {
+  const c = state.content;
+  return `
+  <div class="card" style="max-width:640px;">
+    <div class="field"><label>Your Name / Business Name</label><input id="ct-name" value="${c.name}"/></div>
+    <div class="field"><label>Tagline</label><input id="ct-tagline" value="${c.tagline}"/></div>
+    <div class="field"><label>About Me</label><textarea id="ct-about" rows="4">${c.about}</textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Contact Number</label><input id="ct-phone" value="${c.phone}"/></div>
+      <div class="field"><label>WhatsApp (with country code, no +)</label><input id="ct-whatsapp" value="${c.whatsapp}"/></div>
+    </div>
+    <div class="field"><label>Address</label><input id="ct-address" value="${c.address}"/></div>
+    <div class="grid2">
+      <div class="field"><label>Instagram / Social</label><input id="ct-insta" value="${c.instagram}"/></div>
+      <div class="field"><label>Working Hours</label><input id="ct-hours" value="${c.hours}"/></div>
+    </div>
+    <button id="save-content" class="btn btn-solid">Save Website Content</button>
+  </div>`;
+}
 
-        // Initialize display
-        renderGallery();
-    </script>
+function panelBookings() {
+  if (!state.bookings.length) return `<p style="font-size:.85rem;">No bookings yet.</p>`;
+  return `
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    ${state.bookings.map(b=>`
+      <div class="card" style="display:grid;grid-template-columns:1fr 1fr 1fr 140px;gap:14px;align-items:center;padding:18px 22px;">
+        <div><b>${b.name}</b><div style="font-size:.78rem;color:#5B4E40;">${b.phone}</div></div>
+        <div style="font-size:.85rem;">${b.service}<br/><span style="color:#5B4E40;">${b.date||''}</span></div>
+        <div style="font-size:.78rem;color:#5B4E40;">${b.msg||''}</div>
+        <select data-bstatus="${b.id}">
+          ${['Pending','Confirmed','Completed'].map(s=>`<option ${b.status===s?'selected':''}>${s}</option>`).join('')}
+        </select>
+      </div>`).join('')}
+  </div>`;
+}
+
+function panelReviews() {
+  return `
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    ${state.reviews.map(r=>`
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+        <div><b>${r.name}</b> ${'★'.repeat(r.rating)}<div style="font-size:.85rem;color:#5B4E40;max-width:480px;">${r.text}</div></div>
+        <span class="x-del" data-delrev="${r.id}">Delete</span>
+      </div>`).join('') || `<p style="font-size:.85rem;">No reviews yet.</p>`}
+  </div>`;
+}
+
+function fileToDataUrl(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+function attachDashboard() {
+  document.getElementById('dash-logout').onclick = () => { state.loggedIn=false; state.view='site'; render(); };
+  document.getElementById('dash-view-site').onclick = (e) => { e.preventDefault(); state.view='site'; render(); };
+  document.querySelectorAll('#saba-root .admin-tab').forEach(t=>{
+    t.onclick = () => { state.adminTab = t.dataset.tab; render(); };
+  });
+
+  // PHOTOS
+  const heroU = document.getElementById('hero-upload');
+  if (heroU) heroU.onchange = async () => {
+    if (!heroU.files[0]) return;
+    state.content.heroPhoto = await fileToDataUrl(heroU.files[0]);
+    await save('content'); toast('Hero photo updated'); render();
+  };
+  const aboutU = document.getElementById('about-upload');
+  if (aboutU) aboutU.onchange = async () => {
+    if (!aboutU.files[0]) return;
+    state.content.aboutPhoto = await fileToDataUrl(aboutU.files[0]);
+    await save('content'); toast('About photo updated'); render();
+  };
+  const galU = document.getElementById('gal-upload');
+  if (galU) galU.onchange = async () => {
+    if (!galU.files[0]) return;
+    const url = await fileToDataUrl(galU.files[0]);
+    const cat = document.getElementById('gal-cat').value;
+    state.gallery.unshift({ id: uid(), url, category: cat });
+    await save('gallery'); toast('Photo added to gallery'); render();
+  };
+  document.querySelectorAll('[data-del-gal]').forEach(el=>{
+    el.onclick = async () => {
+      state.gallery = state.gallery.filter(g=>g.id!==el.dataset.delGal);
+      await save('gallery'); render();
+    };
+  });
+
+  // PRICING
+  const savePricing = document.getElementById('save-pricing');
+  if (savePricing) savePricing.onclick = async () => {
+    document.querySelectorAll('[data-price]').forEach(inp=>{
+      const s = state.services.find(x=>x.id===inp.dataset.price);
+      if (s) s.priceINR = Number(inp.value);
+    });
+    await save('services'); toast('Prices updated');
+  };
+
+  // SERVICES
+  document.querySelectorAll('[data-savesvc]').forEach(btn=>{
+    btn.onclick = async () => {
+      const id = btn.dataset.savesvc;
+      const s = state.services.find(x=>x.id===id);
+      s.name = document.querySelector(`[data-sname="${id}"]`).value;
+      s.desc = document.querySelector(`[data-sdesc="${id}"]`).value;
+      await save('services'); toast('Service updated'); render();
+    };
+  });
+  document.querySelectorAll('[data-delsvc]').forEach(el=>{
+    el.onclick = async () => {
+      state.services = state.services.filter(s=>s.id!==el.dataset.delsvc);
+      await save('services'); render();
+    };
+  });
+  const addSvc = document.getElementById('add-service');
+  if (addSvc) addSvc.onclick = async () => {
+    const name = document.getElementById('new-sname').value.trim();
+    if (!name) return toast('Enter a service name');
+    state.services.push({
+      id: uid(), name,
+      desc: document.getElementById('new-sdesc').value,
+      priceINR: Number(document.getElementById('new-sprice').value) || 0
+    });
+    await save('services'); toast('Service added'); render();
+  };
+
+  // CONTENT
+  const saveContent = document.getElementById('save-content');
+  if (saveContent) saveContent.onclick = async () => {
+    const c = state.content;
+    c.name = document.getElementById('ct-name').value;
+    c.tagline = document.getElementById('ct-tagline').value;
+    c.about = document.getElementById('ct-about').value;
+    c.phone = document.getElementById('ct-phone').value;
+    c.whatsapp = document.getElementById('ct-whatsapp').value;
+    c.address = document.getElementById('ct-address').value;
+    c.instagram = document.getElementById('ct-insta').value;
+    c.hours = document.getElementById('ct-hours').value;
+    await save('content'); toast('Website content updated');
+  };
+
+  // BOOKINGS
+  document.querySelectorAll('[data-bstatus]').forEach(sel=>{
+    sel.onchange = async () => {
+      const b = state.bookings.find(x=>x.id===sel.dataset.bstatus);
+      b.status = sel.value;
+      await save('bookings'); toast('Booking status updated');
+    };
+  });
+
+  // REVIEWS
+  document.querySelectorAll('[data-delrev]').forEach(el=>{
+    el.onclick = async () => {
+      state.reviews = state.reviews.filter(r=>r.id!==el.dataset.delrev);
+      await save('reviews'); render();
+    };
+  });
+}
+
+loadAll();
+})();
+</script>
+
 </body>
 </html>
